@@ -1,7 +1,6 @@
 package com.korit.spring.menus.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,8 +37,8 @@ public class Menu {
     private Boolean isAvailable;
 
     @Builder
-    public Menu(String menuName, String imageUrl, String menuDescription, int menuPrice, Boolean isAvailable) {
-        this.categoryId = 1L;
+    public Menu(String menuName, String imageUrl, String menuDescription, int menuPrice, Boolean isAvailable, MenuCategory category) {
+        this.categoryId = category.getId();
         this.storeId = 1L;
         this.menuName = menuName;
         this.imageUrl = imageUrl;

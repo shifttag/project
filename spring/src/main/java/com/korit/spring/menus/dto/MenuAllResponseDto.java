@@ -1,24 +1,24 @@
-package com.korit.spring.menus.dto.response;
+package com.korit.spring.menus.dto;
 
-import com.korit.spring.menus.dto.MenuAllResponseDto;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-public class MenuResponseDto {
+@NoArgsConstructor
+public class MenuAllResponseDto {
     private String menuName;
     private String imageUrl;
     private String menuDescription;
     private int menuPrice;
-    private Boolean isAvailable;
+    private boolean isAvailable;
     private String menuCategory;
 
-    public MenuResponseDto(MenuAllResponseDto menu) {
+    @Builder
+    public MenuAllResponseDto(MenuAllResponseDto menu) {
         this.menuName = menu.getMenuName();
         this.imageUrl = menu.getImageUrl();
         this.menuDescription = menu.getMenuDescription();
@@ -28,4 +28,3 @@ public class MenuResponseDto {
     }
 
 }
-

@@ -19,10 +19,5 @@ public class MenuCategory {
     @Column(nullable = false)
     private String menuCategory;
 
-    @Builder
-    public MenuCategory(Long id, Long storeId, String menuCategory) {
-        this.id = id;
-        this.storeId = storeId;
-        this.menuCategory = menuCategory;
-    }
+
 }
