@@ -1,9 +1,7 @@
 package com.korit.spring.menus.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "menu_categories")
@@ -20,4 +18,11 @@ public class MenuCategory {
 
     @Column(nullable = false)
     private String menuCategory;
+
+    @Builder
+    public MenuCategory(Long id, Long storeId, String menuCategory) {
+        this.id = id;
+        this.storeId = storeId;
+        this.menuCategory = menuCategory;
+    }
 }

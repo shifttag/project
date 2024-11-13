@@ -39,6 +39,8 @@ public class Menu {
 
     @Builder
     public Menu(String menuName, String imageUrl, String menuDescription, int menuPrice, Boolean isAvailable) {
+        this.categoryId = 1L;
+        this.storeId = 1L;
         this.menuName = menuName;
         this.imageUrl = imageUrl;
         this.menuDescription = menuDescription;
