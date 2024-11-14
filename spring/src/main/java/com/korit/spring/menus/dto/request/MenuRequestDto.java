@@ -15,4 +15,5 @@ public class MenuRequestDto {
     private String menuDescription;
     private int menuPrice;
     private Boolean isAvailable;
+    private String menuCategory;
 }

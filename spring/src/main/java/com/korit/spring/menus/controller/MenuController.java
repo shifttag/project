@@ -30,8 +30,8 @@ public class MenuController {
 
     // 메뉴 추가
     @PostMapping(MENU_POST_ADD)
-    public ResponseEntity<ResponseDto<MenuResponseDto>> addMenu(@Valid @RequestBody MenuRequestDto dto, @Valid @RequestBody MenuCategoryRequestDto categoryDto) {
-        ResponseDto<MenuResponseDto> result = menuService.addMenu(dto, categoryDto);
+    public ResponseEntity<ResponseDto<MenuResponseDto>> addMenu(@Valid @RequestBody MenuRequestDto dto) {
+        ResponseDto<MenuResponseDto> result = menuService.addMenu(dto);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 

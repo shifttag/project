@@ -45,5 +45,6 @@ public class Menu {
         this.menuDescription = menuDescription;
         this.menuPrice = menuPrice;
         this.isAvailable = isAvailable;
+
     }
 }

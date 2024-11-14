@@ -24,7 +24,7 @@ public class MenuService {
     private final MenuRepository menuRepository;
     private final MenuCategoryRepository menuCategoryRepository;
 
-    public ResponseDto<MenuResponseDto> addMenu(@Valid MenuRequestDto dto, @Valid MenuCategoryRequestDto categoryDto) {
+    public ResponseDto<MenuResponseDto> addMenu(@Valid MenuRequestDto dto) {
 //        MenuResponseDto data = null;
 //
 //        try {
@@ -35,9 +35,7 @@ public class MenuService {
 //                    .menuDescription(dto.getMenuDescription())
 //                    .menuPrice(dto.getMenuPrice())
 //                    .isAvailable(dto.getIsAvailable())
-//                    .build();
-//            MenuCategory menuCategory = MenuCategory.builder()
-//                    .menuCategory(categoryDto.getMenuCategory())
+//                    .category(dto.get)
 //                    .build();
 //
 //            menuRepository.save(menu);
@@ -49,6 +47,7 @@ public class MenuService {
 //            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
 //        }
 //        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+//
         return null;
     }
 
@@ -66,6 +65,7 @@ public class MenuService {
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+
         }
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
