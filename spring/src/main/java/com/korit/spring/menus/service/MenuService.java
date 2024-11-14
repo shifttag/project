@@ -93,7 +93,7 @@ public class MenuService {
                 return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_DATA);
             }
             Menu menu = OptionalMenu.get();
-            menu.setStoreId(dto.getStoreId());
+            menu.setImageUrl(dto.getImageUrl());
             menu.setMenuName(dto.getMenuName());
             menu.setMenuDescription(dto.getMenuDescription());
             menu.setMenuPrice(dto.getMenuPrice());
