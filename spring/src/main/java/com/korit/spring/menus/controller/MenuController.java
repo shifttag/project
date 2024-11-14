@@ -1,6 +1,7 @@
 package com.korit.spring.menus.controller;
 
 import com.korit.spring.common.ApiMappingPattern;
+import com.korit.spring.menus.dto.MenuAllResponseDto;
 import com.korit.spring.menus.dto.request.MenuCategoryRequestDto;
 import com.korit.spring.menus.dto.request.MenuRequestDto;
 import com.korit.spring.menus.dto.response.MenuResponseDto;
@@ -37,8 +38,8 @@ public class MenuController {
 
     // 메뉴 조회
     @GetMapping(MENU_GET_LIST)
-    public ResponseEntity<ResponseDto<List<MenuResponseDto>>> getAllMenus() {
-        ResponseDto<List<MenuResponseDto>> result = menuService.getAllMenus();
+    public ResponseEntity<ResponseDto<List<MenuAllResponseDto>>> getAllMenus() {
+        ResponseDto<List<MenuAllResponseDto>> result = menuService.getAllMenus();
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 

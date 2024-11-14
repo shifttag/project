@@ -1,16 +1,15 @@
 package com.korit.spring.menus.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "menus")
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +18,9 @@ public class Menu {
     @Column(nullable = false)
     private Long storeId;
 
-    @Column(nullable = false)
-    private Long categoryId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private MenuCategory menuCategory;
 
     @Column(nullable = false)
     private String menuName;
@@ -36,15 +36,5 @@ public class Menu {
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
     private Boolean isAvailable;
 
-    @Builder
-    public Menu(String menuName, String imageUrl, String menuDescription, int menuPrice, Boolean isAvailable, MenuCategory category) {
-        this.categoryId = category.getId();
-        this.storeId = 1L;
-        this.menuName = menuName;
-        this.imageUrl = imageUrl;
-        this.menuDescription = menuDescription;
-        this.menuPrice = menuPrice;
-        this.isAvailable = isAvailable;
 
-    }
 }
