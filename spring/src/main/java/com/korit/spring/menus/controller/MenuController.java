@@ -25,8 +25,8 @@ public class MenuController {
     public static final String MENU_GET_LIST = "/";
     public static final String MENU_GET_NAME = "/{menuName}";
     public static final String MENU_GET_CATEGORY = "/{menuCategory}";
-    public static final String MENU_PUT_UPDATE = "/update";
-    public static final String MENU_DELETE = "/delete";
+    public static final String MENU_PUT_UPDATE = "/update/{id}";
+    public static final String MENU_DELETE = "/delete/{id}";
 
 
     // 메뉴 추가
@@ -47,7 +47,7 @@ public class MenuController {
     @PutMapping(MENU_PUT_UPDATE)
     public ResponseEntity<ResponseDto<MenuResponseDto>> updateMenu(
             @Valid @PathVariable Long id,
-            @RequestBody MenuResponseDto dto
+            @RequestBody MenuRequestDto dto
     ) {
         ResponseDto<MenuResponseDto> result = menuService.updateMenu(id, dto);
         return ResponseEntity.status(HttpStatus.OK).body(result);

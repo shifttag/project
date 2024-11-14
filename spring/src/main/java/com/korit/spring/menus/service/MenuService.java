@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -50,14 +51,12 @@ public class MenuService {
 
             Menu savedMenu = menuRepository.save(menu);
             MenuResponseDto responseDto = new MenuResponseDto(savedMenu);
-
-            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, responseDto);
+            data = responseDto;
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
         }
-
-
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
 
     public ResponseDto<List<MenuAllResponseDto>> getAllMenus() {
@@ -79,22 +78,49 @@ public class MenuService {
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
 
-    public ResponseDto<MenuResponseDto> updateMenu(@Valid Long id, MenuResponseDto dto) {
-        return null;
+    public ResponseDto<MenuResponseDto> updateMenu(@Valid Long id, MenuRequestDto dto) {
+        MenuResponseDto data = null;
+
+        try {
+            Optional<MenuCategory> OptionalCategory = menuCategoryRepository.findById(dto.getCategoryId());
+            if(OptionalCategory.isEmpty()) {
+                return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_DATA);
+            }
+            MenuCategory category = OptionalCategory.get();
+
+            Optional<Menu> OptionalMenu = menuRepository.findById(id);
+            if(OptionalMenu.isEmpty()) {
+                return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_DATA);
+            }
+            Menu menu = OptionalMenu.get();
+            menu.setStoreId(dto.getStoreId());
+            menu.setMenuName(dto.getMenuName());
+            menu.setMenuDescription(dto.getMenuDescription());
+            menu.setMenuPrice(dto.getMenuPrice());
+            menu.setIsAvailable(dto.getIsAvailable());
+            menu.setMenuCategory(category);
+            menuRepository.save(menu);
+            data = new MenuResponseDto(menu);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
 
     public ResponseDto<Void> deleteMenu(Long id) {
-        return null;
+        try {
+            Optional<Menu> optionalMenu = menuRepository.findById(id);
+            if(optionalMenu.isEmpty()) {
+                return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_DATA);
+            }
+            menuRepository.deleteById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, null);
     }
 
-//    public MenuResponseDto convertMenuResponseDto(Menu menu) {
-//        return new MenuResponseDto(
-//                menu.getMenuName(),
-//                menu.getImageUrl(),
-//                menu.getMenuDescription(),
-//                menu.getMenuPrice(),
-//                menu.getIsAvailable(),
-//                menu.getMenuCategory()
-//        );
-//    }
+
 }
