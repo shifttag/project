@@ -132,7 +132,8 @@ public class WebSecurityConfig {
                                 new AntPathRequestMatcher("/api/v1/menus/**"),
                                 new AntPathRequestMatcher("/api/v1/books/**"),
                                 new AntPathRequestMatcher("/api/v1/todos/**"),
-                                new AntPathRequestMatcher("/api/v1/todo/**")
+                                new AntPathRequestMatcher("/api/v1/todo/**"),
+                                new AntPathRequestMatcher("/api/v1/stats/**")
                         )
                         // .permitAll()
                         //  : 누구나 접근이 가능하게 설정

@@ -32,5 +32,6 @@ public class MenuResponseDto {
         this.categoryId = menu.getMenuCategory().getId();
     }
 
+
 }
 
