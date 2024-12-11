@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.koreait.yumyum.entity.Category;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
@@ -21,10 +22,10 @@ public class StoreRequestDto {
     private Category category;
 
     @NotNull
-    private LocalTime openingTime;
+    private LocalDateTime openingTime;
 
     @NotNull
-    private LocalTime closingTime;
+    private LocalDateTime closingTime;
 
     private LocalTime breakStartTime;
 

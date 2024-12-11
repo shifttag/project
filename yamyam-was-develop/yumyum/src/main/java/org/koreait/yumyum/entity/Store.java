@@ -3,6 +3,7 @@ package org.koreait.yumyum.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -17,7 +18,7 @@ public class Store {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name="owner_id", nullable = false)
+    @JoinColumn(name = "owner_id", nullable = false)
     @OneToOne
     private User user;
 
@@ -32,21 +33,20 @@ public class Store {
     private Category category;
 
     @Column(nullable = false)
-    private LocalTime openingTime;
+    private LocalDateTime openingTime;
 
     @Column(nullable = false)
-    private LocalTime closingTime;
+    private LocalDateTime closingTime;
 
-    @Column
+    @Column(length = 200)
     private LocalTime breakStartTime;
 
-    @Column
+    @Column(length = 200)
     private LocalTime breakEndTime;
 
-    @Column
+    @Column(length = 500)
     private String address;
 
     @Column(columnDefinition = "TEXT")
     private String description;
 }
-

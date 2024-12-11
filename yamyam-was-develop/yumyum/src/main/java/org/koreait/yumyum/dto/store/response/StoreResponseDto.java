@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import org.koreait.yumyum.entity.Category;
 import org.koreait.yumyum.entity.Store;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
@@ -13,8 +14,8 @@ public class StoreResponseDto {
     private String storeName;
     private String logoUrl;
     private Category category;
-    private LocalTime openingTime;
-    private LocalTime closingTime;
+    private LocalDateTime openingTime;
+    private LocalDateTime closingTime;
     private LocalTime breakStartTime;
     private LocalTime breakEndTime;
     private String address;
