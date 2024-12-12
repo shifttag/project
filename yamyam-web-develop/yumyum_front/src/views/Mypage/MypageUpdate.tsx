@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import * as s from "./MypageCss";
 import { Link, useNavigate } from "react-router-dom";
-import { MY_PAGE, MY_PAGE_UPDATE } from "../../constants";
+import { MAIN_MAIN_PATH, MY_PAGE, MY_PAGE_UPDATE } from "../../constants";
 
 interface User {
   userId: string;
@@ -28,7 +28,7 @@ export default function Mypage() {
     marketingAgreed: false,
   });
 
-  const [id, SetId] = useState<Number>(5);
+  const [id, SetId] = useState<Number>(8);
   const [errorMsg, setErrorMsg] = useState<{ [key: string]: string }>({});
   const [successMsg, setSuccessMsg] = useState<{ [key: string]: string }>({});
 
@@ -103,10 +103,12 @@ export default function Mypage() {
   const handlePutUser = async () => {
     try{
       await axios.put(`http://localhost:4041/api/v1/mypage/update/${id}`, user);
-      
+      console.log(user);
+      alert("수정이 완료되었습니다.")
     } catch(e) {
       console.error("데이터를 불러오지 못했습니다.", e);
     }
+    navigate(MAIN_MAIN_PATH)
   }
 
   return (

@@ -2,8 +2,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import * as s from "./MypageCss";
-import { Link } from "react-router-dom";
-import { MY_PAGE_UPDATE } from "../../constants";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { MAIN_PATH, MY_PAGE_UPDATE } from "../../constants";
 
 interface User {
   userId: string;
@@ -16,6 +16,7 @@ interface User {
 }
 
 export default function Mypage() {
+
   const [user, setUser] = useState<User>({
     userId: "",
     userPw: "",
@@ -25,21 +26,24 @@ export default function Mypage() {
     userBusinessNumber: "",
     marketingAgreed: false,
   });
-  const [id, SetId] = useState<Number>(5);
+  const [id, SetId] = useState<Number>(8);
 
   const handleCheckBox = () => {
     user.marketingAgreed = !user.marketingAgreed;
     console.log(user);
   };
 
+  const navigate = useNavigate();
   const handleDeleteUser = async () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       try {
         await axios.delete(`http://localhost:4041/api/v1/mypage/delete/${id}`);
+
       } catch (e) {
         console.log("해당 아이디가 없습니다.");
       }
       alert("성공적으로 삭제되었습니다.");
+      navigate(MAIN_PATH)
     } else {
       return;
     }
@@ -50,7 +54,7 @@ export default function Mypage() {
       const userData = await axios.get(
         `http://localhost:4041/api/v1/mypage/${id}`
       );
-      // console.log(userData.data);
+      console.log(userData.data);
       setUser(userData.data.data);
     } catch (e) {
       console.error("데이터를 불러오지 못했습니다.", e);

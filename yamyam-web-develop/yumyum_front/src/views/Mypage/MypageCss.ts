@@ -23,6 +23,7 @@ export const body = css`
   margin-bottom: 20px;
   border: 1px solid #dbdbdb;
   width: 100%;
+  width: 1280px;
   height: 650px;
   background-color: white;
   border-radius: 10px;
@@ -32,7 +33,7 @@ export const updateBody = css`
   box-sizing: border-box;
   margin-bottom: 20px;
   border: 1px solid #dbdbdb;
-  width: 100%;
+  width: 1280px;
   height: 850px;
   background-color: white;
   border-radius: 10px;

@@ -1,4 +1,5 @@
 export const MAIN_PATH = '/';
+export const MAIN_MAIN_PATH = '/main'
 
 export const AUTH_PATH = '/auth';
 export const AUTH_PATH_SIGN_UP = '/auth/signUp';
